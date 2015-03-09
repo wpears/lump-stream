@@ -1,0 +1,29 @@
+{
+  "name": "lump-stream",
+  "version": "0.0.1",
+  "description": "Stream lumps of data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wpears/lump-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "highWaterMark",
+    "collect",
+    "concat",
+    "readable-stream"
+  ],
+  "author": "Wyatt Pearsall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wpears/lump-stream/issues"
+  },
+  "homepage": "https://github.com/wpears/lump-stream",
+  "dependencies": {
+    "readable-stream": "^1.0.33"
+  }
+}
