@@ -3,7 +3,8 @@ var inherits = require('inherits');
 
 inherits(Lump, Transform);
 
-Lump.protoype._transform = function(chunk, enc, cb){
+
+Lump.prototype._transform = function(chunk, enc, cb){
   this._buffers.push(chunk);
   this._bufferLen += chunk.length;
 
@@ -13,10 +14,12 @@ Lump.protoype._transform = function(chunk, enc, cb){
   cb();
 }
 
+
 Lump.prototype._flush = function(cb){
   this.push(this.concat());
   cb(); 
 }
+
 
 Lump.prototype.concat = function(){
   var buffers = this._buffers;
@@ -26,6 +29,7 @@ Lump.prototype.concat = function(){
   if(Buffer.isBuffer(buffers[0])) return Buffer.concat(buffers);
   return buffers.join(''); 
 }
+
 
 Lump.prototype.init= function(){
   this._buffers = [];
@@ -39,5 +43,6 @@ function Lump (len){
   this.init();
   Transform.call(this);
 }
+
 
 module.exports = Lump;
