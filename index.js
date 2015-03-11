@@ -5,9 +5,16 @@ inherits(Lump, Transform);
 
 
 Lump.prototype._transform = function(chunk, enc, cb){
-  console.log(chunk);
+  var chunkLen;
+
+  if(Buffer.isBuffer(chunk)){
+    chunkLen = chunk.length;
+  }else{
+    chunkLen = 1;
+  }
+
   this._buffers.push(chunk);
-  this._bufferLen += chunk.length;
+  this._bufferLen += chunkLen;
 
   if(this._bufferLen >= this._len){
     this.push(this.concat())
@@ -28,7 +35,7 @@ Lump.prototype.concat = function(){
   this.init();
 
   if(Buffer.isBuffer(buffers[0])) return Buffer.concat(buffers);
-  return //object mode return val 
+  return buffers;
 }
 
 
