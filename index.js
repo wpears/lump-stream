@@ -5,6 +5,7 @@ inherits(Lump, Transform);
 
 
 Lump.prototype._transform = function(chunk, enc, cb){
+  console.log(chunk);
   this._buffers.push(chunk);
   this._bufferLen += chunk.length;
 
@@ -37,11 +38,12 @@ Lump.prototype.init= function(){
 }
 
 
-function Lump (len){
-  if(!(this instanceof Lump)) return new Lump(len); 
+
+function Lump (len, obj){
+  if(!(this instanceof Lump)) return new Lump(len, obj); 
   this._len = len;
   this.init();
-  Transform.call(this);
+  Transform.call(this, obj);
 }
 
 

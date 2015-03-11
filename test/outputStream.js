@@ -12,10 +12,10 @@ LogStream.prototype._write = function(chunk, enc, cb){
   cb();
 }
 
-function LogStream(label){
-  if(!(this instanceof LogStream)) return new LogStream(label);
+function LogStream(label, obj){
+  if(!(this instanceof LogStream)) return new LogStream(label, obj);
   this._label = label;
-  Writable.call(this);
+  Writable.call(this, obj);
 }
 
 module.exports = LogStream;
