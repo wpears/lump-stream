@@ -7,7 +7,6 @@ inherits(Lump, Transform);
 
 
 Lump.prototype._transform = function(chunk, enc, cb){
-  console.log("CHUNK",chunk);
 
   this._buffers.push(chunk);
   this._bufferLen += this._objLength || chunk.length;
@@ -15,12 +14,17 @@ Lump.prototype._transform = function(chunk, enc, cb){
   if(this._bufferLen >= this._len){
     this.push(this.concat())
   }
+
   cb();
 }
 
 
 Lump.prototype._flush = function(cb){
-  this.push(this.concat());
+
+  if(this._buffers[0] !== undefined){
+    this.push(this.concat());
+  }
+
   cb(); 
 }
 
@@ -29,7 +33,7 @@ Lump.prototype.concat = function(){
   var buffers = this._buffers;
 
   this.init();
-  console.log("FIRST BUFFER",buffers[0]);
+
   if(Buffer.isBuffer(buffers[0])) return Buffer.concat(buffers);
   return buffers;
 }
@@ -44,7 +48,7 @@ Lump.prototype.init= function(){
 
 function Lump (len, obj){
   if(!(this instanceof Lump)) return new Lump(len, obj); 
-  if(obj) this._objLength = 1;
+  this._objLength = obj ? 1 : 0;
   this._len = len;
   this.init();
   Transform.call(this, obj);
