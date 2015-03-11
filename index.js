@@ -27,7 +27,7 @@ Lump.prototype.concat = function(){
   this.init();
 
   if(Buffer.isBuffer(buffers[0])) return Buffer.concat(buffers);
-  return buffers.join(''); 
+  return //object mode return val 
 }
 
 
