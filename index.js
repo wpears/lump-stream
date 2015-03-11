@@ -1,6 +1,8 @@
 var Transform = require('readable-stream/transform');
 var inherits = require('inherits');
 
+var objMode = {objectMode: true};
+
 inherits(Lump, Transform);
 
 
@@ -51,6 +53,13 @@ function Lump (len, obj){
   this._len = len;
   this.init();
   Transform.call(this, obj);
+}
+
+
+Lump.obj = function(len, obj){
+  if(obj) obj.objectMode = true;
+  else obj = objMode;
+  return new Lump(len, obj); 
 }
 
 

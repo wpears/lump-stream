@@ -6,7 +6,7 @@ var outputStream = require('./outputStream.js');
 
 //fs.createReadStream('./cons.txt').pipe(lump(0)).pipe(outputStream("SECOND STREAM"));
 
-var objLump = lump(Math.pow(2,17),{objectMode:true});
+var objLump = lump.obj(2);
 
 objLump.pipe(outputStream("Object stream",{objectMode:true}));
 
