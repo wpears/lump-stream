@@ -48,7 +48,7 @@ Lump.prototype.init= function(){
 
 function Lump (len, obj){
   if(!(this instanceof Lump)) return new Lump(len, obj); 
-  this._objLength = obj ? 1 : 0;
+  this._objLength = obj&&obj.objectMode ? 1 : 0;
   this._len = len;
   this.init();
   Transform.call(this, obj);
